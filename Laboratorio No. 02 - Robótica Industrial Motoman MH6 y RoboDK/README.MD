@@ -30,7 +30,10 @@ Alto, medio, bajo. Símbolo similar al de señal de Wi-Fi
 **- ¿Cómo se comunica RoboDK con el manipulador?**
 **- Analizar las diferencias entre RoboDK y RobotStudio y describir los usos específicos de cada herramienta, ¿Qué significa para usted cada una de esas herramientas?**
 **- Programar una trayectoria polar en RoboDK, hacer que se ejecute virtualmente en RoboDK y hacer que el manipulador Motoman la realice físicamente comandado desde el PC. https://www.monografias.com/trabajos33/coordenadas-polares/coordenadas-polares.**
-**- Bajo la secci´on de la trayectoria polar, incluir los nombres de los integrantes del equipo.**
+
+$r(\theta) = cos(\frac{n}{d}*\theta)$
+
+**- Bajo la sección de la trayectoria polar, incluir los nombres de los integrantes del equipo.**
 
 ## Resultado
 
