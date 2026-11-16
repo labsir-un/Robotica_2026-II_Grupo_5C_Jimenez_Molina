@@ -16,15 +16,20 @@
 
 **- Describir las diferencias entre el home1 y el home2 del Motoman MH6.**
 
-*home1* transporte *home2* encoders en 0.
+- *home1* transporte: Posición pensada para transporte del robot, ocupando la menor cantidad de espacio posible, en posiciones que requieren el mínimo esfuerzo de componentes como los frenos de los motores.
+- *home2* encoders en 0: Posición en la que los encoders absolutos de los motores del robot se encuentran en 0.
+
+<!-- TODO: Subir fotos de las posiciones home -->
 
 **- Describir el procedimiento y cuáles teclas se usan para realizar el movimiento manual del manipulador Motoman por articulaciones, cambiar a movimientos cartesianos y realizar movimientos de traslación y rotación en los ejes X, Y, Z.**
 
-Estado de la llave (teach, play, remoto), parada de emegencia, boton
+Estado de la llave (teach, play, remoto), parada de emegencia, boton "Servo ON Ready"
+
+<!-- TODO: Subir foto del teach pendant -->
 
 **- Detallar los niveles de velocidad del Motoman para movimientos manuales y su configuración, ¿Cómo se hace el cambio entre niveles de velocidad?, ¿Cómo se identifica en la pantalla el nivel de velocidad establecido?**
 
-Alto, medio, bajo. Símbolo similar al de señal de Wi-Fi
+Alto, medio, bajo. Símbolo similar al de señal de Wi-Fi en el teach pendant.
 
 **- Explicar las aplicaciones principales de RoboDK y cómo se comunica con el manipulador, ¿Qué hace RoboDK para mover el manipulador?**
 **- ¿Cómo se comunica RoboDK con el manipulador?**
@@ -36,5 +41,7 @@ $r(\theta) = cos(\frac{n}{d}*\theta)$
 **- Bajo la sección de la trayectoria polar, incluir los nombres de los integrantes del equipo.**
 
 ## Resultado
+
+![figura_trazada](../assets/lab02/figura.png)
 
 ### Video
