@@ -163,7 +163,7 @@ Permite comandar y monitorear el manipulador físico directamente desde la inter
 - **Lado Cliente (RoboDK Driver):** Un ejecutable independiente gestionado por RoboDK establece conexión TCP/IP con la dirección IP del controlador. Envía tramas de datos con consignas de posición articular ($\mathbf{q}$), poses cartesianas ($\mathbf{x}$), velocidades del TCP, radios de redondeo y estados de salidas digitales/analógicas (`SetDO` / `SetAO`).
 - **Bucle de Retroalimentación (*Feedback*):** El controlador ejecuta cada instrucción recibida y devuelve continuamente a RoboDK el vector de ángulos articulares reales leídos desde los *encoders* y el estado operativo (*Busy / Ready*), manteniendo sincronizado el gemelo digital con el robot físico.
 
-> **Nota técnica de ingeniería:** El modo *Online* mediante *drivers* de sockets está orientado a pruebas de validación, depuración de trayectorias y aplicaciones guiadas por visión o sensores no críticas en determinismo duro, dado que la latencia de red TCP/IP y la ejecución instrucción por instrucción limitan el *blending* continuo de alta velocidad en comparación con la ejecución nativa *Offline*.
+> **Nota:** El modo *Online* mediante *drivers* de sockets está orientado a pruebas de validación, depuración de trayectorias y aplicaciones guiadas por visión o sensores no críticas en determinismo duro, dado que la latencia de red TCP/IP y la ejecución instrucción por instrucción limitan el *blending* continuo de alta velocidad en comparación con la ejecución nativa *Offline*.
 
 #### 3. Integración con Protocolos Industriales y APIs Externas
 
