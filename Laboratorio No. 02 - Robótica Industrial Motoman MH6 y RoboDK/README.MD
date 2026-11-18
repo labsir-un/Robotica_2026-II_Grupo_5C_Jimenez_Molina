@@ -226,7 +226,7 @@ Desde la perspectiva de un ingeniero mecatrónico especialista en robótica, amb
 - **RoboDK significa interoperabilidad, agilidad y abstracción de alto nivel:** Es el puente ideal entre el diseño mecánico (CAD/CAM), la teoría de control/cinemática y el despliegue rápido sobre hardware heterogéneo. Permite concentrarse en la planificación geométrica, la integración de sensores mediante lenguajes modernos (Python/C++) y la validación conceptual sin quedar atado a la sintaxis propietaria de un único fabricante.
 - **ABB RobotStudio significa determinismo, fidelidad de hardware y rigor industrial (*Digital Twin* verdadero):** Representa la ingeniería de detalle y la puesta en marcha virtual de grado productivo. Cuando un proyecto en planta utiliza infraestructura ABB, RobotStudio garantiza que el código RAPID, las configuraciones de seguridad funcional, los tiempos de ciclo y las comunicaciones de campo funcionarán exactamente igual en el controlador físico que en el entorno virtual, mitigando riesgos mecánicos, eléctricos y operativos antes de energizar el manipulador.
 
-### Programar una trayectoria polar en RoboDK, hacer que se ejecute virtualmente en RoboDK y hacer que el manipulador Motoman la realice físicamente comandado desde el PC. https://www.monografias.com/trabajos33/coordenadas-polares/coordenadas-polares.
+### Programar una trayectoria polar en RoboDK, hacer que se ejecute virtualmente en RoboDK y hacer que el manipulador Motoman la realice físicamente comandado desde el PC.
 
 #### Formulación Matemática y Discretización de la Trayectoria
 
