@@ -69,14 +69,14 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 
 ### Integrante 2
 <div align="center">
-  <img src="./assets/integrantes/integrante2.jpg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
+  <img src="./assets/integrantes/Foto Juan Fondo Blanco.jpeg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
-- **Nombre completo:** Nombre Apellido
+- **Nombre completo:** Juan David Molina Gonzalez
 - **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Modelado, programación, control
+- **Correo institucional:** jumolinago@unal.edu.co
+- **Usuario de GitHub:** [JMolinaG2024](https://github.com/JMolinaG2024)
+- **Rol en el equipo:** Programación, control
 - **Intereses:** Manipulación, ROS 2, control de robots
 - **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+  Estudiante de Ingeniería Mecatronica, interesado en la programacion y el control, los motores y el baloncesto
