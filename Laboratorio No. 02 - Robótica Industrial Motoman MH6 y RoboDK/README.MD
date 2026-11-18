@@ -255,13 +255,6 @@ $$x(\theta) = r(\theta)\cos(\theta), \quad y(\theta) = r(\theta)\sin(\theta), \q
    - Se coloca el selector de llave del controlador **DX100** en modo **`REMOTE`**.
    - En RoboDK se configura la conexión Ethernet (dirección IP del controlador Motoman y puerto del *driver* `apikuka`/`motoman`), se verifica el estado *Ready* y se habilita la opción **"Ejecutar en el robot" (*Run on Robot*)** para comandar los movimientos en tiempo real desde el PC.
 
-### Bajo la sección de la trayectoria polar, incluir los nombres de los integrantes del equipo.
-
-#### Integrantes del Equipo
-
-- **[Nombre Completo Integrante 1]**
-- **[Nombre Completo Integrante 2]**
-
 ## Resultado
 
 ![figura_trazada](../assets/lab02/figura.png)
