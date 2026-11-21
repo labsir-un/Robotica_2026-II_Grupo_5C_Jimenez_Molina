@@ -1,5 +1,41 @@
 # Informe de Laboratorio 02
 
+- [Informe de Laboratorio 02](#informe-de-laboratorio-02)
+  - [Descripción de problema y solución](#descripción-de-problema-y-solución)
+  - [Tareas a desarrollar](#tareas-a-desarrollar)
+    - [Comparación de especificaciones técnicas del Motoman MH6 y el IRB140 en un cuadro comparativo.](#comparación-de-especificaciones-técnicas-del-motoman-mh6-y-el-irb140-en-un-cuadro-comparativo)
+    - [Describir las diferencias entre el home1 y el home2 del Motoman MH6.](#describir-las-diferencias-entre-el-home1-y-el-home2-del-motoman-mh6)
+      - [¿Cuál posición es mejor? Justificación técnica](#cuál-posición-es-mejor-justificación-técnica)
+    - [Describir el procedimiento y cuáles teclas se usan para realizar el movimiento manual del manipulador Motoman por articulaciones, cambiar a movimientos cartesianos y realizar movimientos de traslación y rotación en los ejes X, Y, Z.](#describir-el-procedimiento-y-cuáles-teclas-se-usan-para-realizar-el-movimiento-manual-del-manipulador-motoman-por-articulaciones-cambiar-a-movimientos-cartesianos-y-realizar-movimientos-de-traslación-y-rotación-en-los-ejes-x-y-z)
+      - [1. Habilitación del sistema y energización de servomotores](#1-habilitación-del-sistema-y-energización-de-servomotores)
+      - [2. Cambio entre movimiento articular y movimientos cartesianos](#2-cambio-entre-movimiento-articular-y-movimientos-cartesianos)
+      - [3. Ejecución de movimientos en articulaciones, traslación y rotación ($X, Y, Z$)](#3-ejecución-de-movimientos-en-articulaciones-traslación-y-rotación-x-y-z)
+    - [Detallar los niveles de velocidad del Motoman para movimientos manuales y su configuración, ¿Cómo se hace el cambio entre niveles de velocidad?, ¿Cómo se identifica en la pantalla el nivel de velocidad establecido?](#detallar-los-niveles-de-velocidad-del-motoman-para-movimientos-manuales-y-su-configuración-cómo-se-hace-el-cambio-entre-niveles-de-velocidad-cómo-se-identifica-en-la-pantalla-el-nivel-de-velocidad-establecido)
+      - [Niveles de velocidad manual disponibles y configuración](#niveles-de-velocidad-manual-disponibles-y-configuración)
+      - [Procedimiento para cambiar entre niveles de velocidad](#procedimiento-para-cambiar-entre-niveles-de-velocidad)
+      - [Identificación visual en la pantalla del Teach Pendant](#identificación-visual-en-la-pantalla-del-teach-pendant)
+    - [Explicar las aplicaciones principales de RoboDK y cómo se comunica con el manipulador, ¿Qué hace RoboDK para mover el manipulador?](#explicar-las-aplicaciones-principales-de-robodk-y-cómo-se-comunica-con-el-manipulador-qué-hace-robodk-para-mover-el-manipulador)
+      - [Aplicaciones Principales de RoboDK](#aplicaciones-principales-de-robodk)
+      - [Pipeline de Procesamiento: ¿Qué hace RoboDK para mover el manipulador?](#pipeline-de-procesamiento-qué-hace-robodk-para-mover-el-manipulador)
+    - [¿Cómo se comunica RoboDK con el manipulador?](#cómo-se-comunica-robodk-con-el-manipulador)
+      - [1. Comunicación Offline (Transferencia de Programas Compilados)](#1-comunicación-offline-transferencia-de-programas-compilados)
+      - [2. Comunicación Online / Tiempo Real (*RoboDK Drivers* - "Run on Robot")](#2-comunicación-online--tiempo-real-robodk-drivers---run-on-robot)
+      - [3. Integración con Protocolos Industriales y APIs Externas](#3-integración-con-protocolos-industriales-y-apis-externas)
+    - [Analizar las diferencias entre RoboDK y RobotStudio y describir los usos específicos de cada herramienta, ¿Qué significa para usted cada una de esas herramientas?](#analizar-las-diferencias-entre-robodk-y-robotstudio-y-describir-los-usos-específicos-de-cada-herramienta-qué-significa-para-usted-cada-una-de-esas-herramientas)
+      - [Matriz Comparativa Técnica: RoboDK vs. ABB RobotStudio](#matriz-comparativa-técnica-robodk-vs-abb-robotstudio)
+      - [Análisis de Diferencias Arquitectónicas](#análisis-de-diferencias-arquitectónicas)
+      - [Usos Específicos de Cada Herramienta](#usos-específicos-de-cada-herramienta)
+        - [Usos Específicos de RoboDK](#usos-específicos-de-robodk)
+        - [Usos Específicos de ABB RobotStudio](#usos-específicos-de-abb-robotstudio)
+      - [Significado personal](#significado-personal)
+    - [Programar una trayectoria polar en RoboDK, hacer que se ejecute virtualmente en RoboDK y hacer que el manipulador Motoman la realice físicamente comandado desde el PC.](#programar-una-trayectoria-polar-en-robodk-hacer-que-se-ejecute-virtualmente-en-robodk-y-hacer-que-el-manipulador-motoman-la-realice-físicamente-comandado-desde-el-pc)
+      - [Formulación Matemática y Discretización de la Trayectoria](#formulación-matemática-y-discretización-de-la-trayectoria)
+      - [Implementación en RoboDK y Ejecución Física](#implementación-en-robodk-y-ejecución-física)
+  - [Resultado](#resultado)
+    - [Figura trazada](#figura-trazada)
+    - [Video](#video)
+
+
 ## Descripción de problema y solución
 
 En los entornos modernos de manufactura flexible y automatización industrial, la selección, operación segura y programación eficiente de manipuladores robóticos requieren comprender tanto las capacidades mecánicas y cinemáticas de cada arquitectura como los entornos de simulación y control que permiten desplegar trayectorias complejas sin comprometer la integridad de los equipos.
@@ -10,32 +46,35 @@ Para abordar esta necesidad, en la presente práctica se realiza un análisis t�
 
 ### Comparación de especificaciones técnicas del Motoman MH6 y el IRB140 en un cuadro comparativo.
 
-| Característica Técnica | ABB IRB140 | Yaskawa Motoman MH6 |
-| :--- | :--- | :--- |
-| **Peso del manipulador** | $\approx 98\text{ kg}$ ($\sim 90\text{ kg}$ nominal) | $\approx 130\text{ kg}$ |
-| **Grados de libertad (GDL)** | 6 (8 en la celda del laboratorio con 2 ejes externos) | 6 (brazo base; extensible con ejes externos en celda) |
-| **Alcance máximo** | $810\text{ mm}$ | $1422\text{ mm}$ |
-| **Capacidad de carga (*Payload*)** | $6\text{ kg}$ | $6\text{ kg}$ |
-| **Repetibilidad (ISO 9283)** | $\pm 0.03\text{ mm}$ | $\pm 0.08\text{ mm}$ |
+| Característica Técnica               | ABB IRB140                                                                                                                                                             | Yaskawa Motoman MH6                                                                                                                                                 |
+| :----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Peso del manipulador**             | $\approx 98\text{ kg}$ ($\sim 90\text{ kg}$ nominal)                                                                                                                   | $\approx 130\text{ kg}$                                                                                                                                             |
+| **Grados de libertad (GDL)**         | 6 (8 en la celda del laboratorio con 2 ejes externos)                                                                                                                  | 6 (brazo base; extensible con ejes externos en celda)                                                                                                               |
+| **Alcance máximo**                   | $810\text{ mm}$                                                                                                                                                        | $1422\text{ mm}$                                                                                                                                                    |
+| **Capacidad de carga (*Payload*)**   | $6\text{ kg}$                                                                                                                                                          | $6\text{ kg}$                                                                                                                                                       |
+| **Repetibilidad (ISO 9283)**         | $\pm 0.03\text{ mm}$                                                                                                                                                   | $\pm 0.08\text{ mm}$                                                                                                                                                |
 | **Velocidad máxima articular / TCP** | TCP: hasta $2.5\text{ m/s}$<br>Articular: $200^\circ/\text{s}$ (Ejes 1-2), $260^\circ/\text{s}$ (Eje 3), $360^\circ/\text{s}$ (Ejes 4-5), $450^\circ/\text{s}$ (Eje 6) | Articular: $220^\circ/\text{s}$ (Eje S), $200^\circ/\text{s}$ (Eje L), $220^\circ/\text{s}$ (Eje U), $410^\circ/\text{s}$ (Ejes R, B), $610^\circ/\text{s}$ (Eje T) |
-| **Controlador y lenguaje nativo** | IRC5 / RAPID | DX100 / INFORM III |
-| **Año / Versión** | Lanzamiento serie ~2001 (Unidad reacondicionada en 2009) | Serie MH ~2008 (Controlador DX100) |
-| **Aplicaciones típicas** | Ensamblaje de alta precisión, dispensado de adhesivos, soldadura por arco, limpieza/pulverización (IP67) y manipulación en celdas compactas | Manipulación de materiales (*Pick & Place*), atención de máquinas CNC (*Machine Tending*), soldadura, paletizado ligero y procesos de amplio volumen de trabajo |
+| **Controlador y lenguaje nativo**    | IRC5 / RAPID                                                                                                                                                           | DX100 / INFORM III / Python                                                                                                                                         |
+| **Año / Versión**                    | Lanzamiento serie ~2001 (Unidad reacondicionada en 2009)                                                                                                               | Serie MH ~2008 (Controlador DX100)                                                                                                                                  |
+| **Aplicaciones típicas**             | Ensamblaje de alta precisión, dispensado de adhesivos, soldadura por arco, limpieza/pulverización (IP67) y manipulación en celdas compactas                            | Manipulación de materiales (*Pick & Place*), atención de máquinas CNC (*Machine Tending*), soldadura, paletizado ligero y procesos de amplio volumen de trabajo     |
 
 ### Describir las diferencias entre el home1 y el home2 del Motoman MH6.
 
-- *home1* transporte: Posición pensada para transporte y reposo del robot, ocupando la menor cantidad de espacio posible, en posiciones que requieren el mínimo esfuerzo estático de componentes como los frenos electromagnéticos de los servomotores. En esta configuración plegada, el brazo se retrae sobre su base con valores articulares aproximados de $S = 0^\circ$, $L \approx -45^\circ$, $U \approx -65^\circ$, $R = 0^\circ$, $B \approx -25^\circ$, $T = 0^\circ$ *(ajustables según la variable de posición registrada en la celda del laboratorio)*.
-- *home2* encoders en 0: Posición de calibración o punto de chequeo (*Second Home Position*) en la que los encoders absolutos de todos los motores del robot se encuentran en $0$ pulsos ($S = 0^\circ$, $L = 0^\circ$, $U = 0^\circ$, $R = 0^\circ$, $B = 0^\circ$, $T = 0^\circ$), coincidiendo exactamente con las marcas mecánicas de alineación grabadas en cada articulación (brazo inferior $L$ vertical y antebrazo $U$ extendido horizontalmente hacia adelante).
+- ***home1* transporte**: Posición pensada para transporte y reposo del robot, ocupando la menor cantidad de espacio posible, en posiciones que requieren el mínimo esfuerzo estático de componentes como los frenos de los servomotores.
+
+![fotoHOME1](../assets/lab02/fotoHOME1.jpeg)
+
+- ***home2* encoders en 0**: Posición de calibración o punto de chequeo (*Second Home Position*) en la que los encoders absolutos de todos los motores del robot se encuentran en $0$ pulsos ($S = 0^\circ$, $L = 0^\circ$, $U = 0^\circ$, $R = 0^\circ$, $B = 0^\circ$, $T = 0^\circ$), coincidiendo exactamente con las marcas mecánicas de alineación grabadas en cada articulación (brazo inferior $L$ vertical y antebrazo $U$ extendido horizontalmente hacia adelante).
+
+![fotoHOME2](../assets/lab02/fotoHOME2.jpeg)
 
 #### ¿Cuál posición es mejor? Justificación técnica
 
-Desde el punto de vista operativo y de ingeniería mecánica, **ninguna sustituye por completo a la otra porque cumplen funciones distintas**, pero para la **operación cotidiana, estacionamiento al finalizar prácticas y preservación del hardware, `home1` es superior**:
+Desde el punto de vista operativo y de ingeniería mecánica, ninguna sustituye por completo a la otra porque cumplen funciones distintas, pero para la operación cotidiana, estacionamiento al finalizar prácticas y preservación del hardware, `home1` es preferible:
 
 - **Menor torque gravitacional y desgaste de frenos:** Al acercar el centro de masa del brazo y de la herramienta hacia el eje vertical de la base ($S$), `home1` reduce drásticamente el momento flector soportado por los reductores y frenos de los ejes $L$ y $U$ cuando el manipulador queda desenergizado.
 - **Seguridad espacial y evasión de singularidades:** `home1` minimiza la envolvente física ocupada en la celda, reduciendo el riesgo de colisiones con periféricos o personal. Además, en `home2` ($B = 0^\circ$), los ejes de muñeca $R$ y $T$ quedan colineales, ubicando al manipulador en una **singularidad cinemática de muñeca** que impide iniciar directamente movimientos cartesianos suaves sin reorientar previamente el eje $B$.
 - **Rol específico de `home2`:** `home2` sigue siendo indispensable únicamente como referencia metrológica para verificar la integridad de los encoders absolutos tras un corte de batería o colisión (mediante la rutina de comprobación de posición cero).
-
-<!-- TODO: Subir fotos de las posiciones home -->
 
 ### Describir el procedimiento y cuáles teclas se usan para realizar el movimiento manual del manipulador Motoman por articulaciones, cambiar a movimientos cartesianos y realizar movimientos de traslación y rotación en los ejes X, Y, Z.
 
@@ -43,9 +82,9 @@ Para operar manualmente (*Jogging*) el manipulador Yaskawa Motoman MH6 desde el 
 
 #### 1. Habilitación del sistema y energización de servomotores
 - **Verificación de seguridad:** Confirmar que los pulsadores tipo hongo de **Parada de Emergencia (*E-Stop*)** tanto en el panel frontal del controlador DX100 como en la esquina superior derecha del *Teach Pendant* se encuentren liberados (girados en sentido horario).
-- **Selección del modo de operación (`TEACH`):** Girar la llave selectora ubicada en la parte superior izquierda del *Teach Pendant* hacia la posición **`TEACH`** (los otros dos estados disponibles son **`PLAY`** para ejecución automática de trabajos almacenados y **`REMOTE`** para control externo desde PLC o PC mediante RoboDK).
+- **Selección del modo de operación (`TEACH`):** Girar la llave ubicada en la parte superior izquierda del *Teach Pendant* hacia la posición **`TEACH`** (los otros dos estados disponibles son **`PLAY`** para ejecución automática de trabajos almacenados y **`REMOTE`** para control externo desde PLC o PC mediante RoboDK).
 - **Preparación de servos:** Presionar el botón **`SERVO ON READY`** en el *Teach Pendant*; el LED indicador comenzará a parpadear señalando que el controlador está listo para energizar los motores.
-- **Activación del interruptor de hombre muerto (*Enable Switch*):** Presionar y sostener en su posición intermedia el gatillo de seguridad de tres posiciones ubicado en la parte posterior del *Teach Pendant*. Al hacerlo, se cierran los contactores de potencia, se liberan los frenos mecánicos y el botón **`SERVO ON READY`** queda iluminado de forma continua. *(Nota: soltar el gatillo o presionarlo a fondo corta inmediatamente la energía de los servos por seguridad).*
+- **Activación del interruptor de hombre muerto:** Presionar y sostener en su posición intermedia el gatillo de seguridad de tres posiciones ubicado en la parte posterior del *Teach Pendant*. Al hacerlo, se cierran los contactores de potencia, se liberan los frenos mecánicos y el botón **`SERVO ON READY`** queda iluminado de forma continua. *(Nota: soltar el gatillo o presionarlo a fondo corta inmediatamente la energía de los servos por seguridad).*
 
 #### 2. Cambio entre movimiento articular y movimientos cartesianos
 - Presionar la tecla **`COORD`** ubicada en el panel central del *Teach Pendant*. Cada pulsación alterna cíclicamente entre los sistemas de coordenadas disponibles (mostrados en la barra superior de la pantalla):
@@ -57,12 +96,14 @@ Para operar manualmente (*Jogging*) el manipulador Yaskawa Motoman MH6 desde el 
 Manteniendo presionado el gatillo trasero de habilitación, se utilizan las **12 teclas de movimiento de ejes** (6 pares negativo/positivo) situadas en la mitad derecha del *Teach Pendant*:
 
 - **Movimiento por articulaciones (Modo `JOINT`):**
-  - `[S-]` / `[S+]`: Giro de la base (*Swing*).
-  - `[L-]` / `[L+]`: Inclinación del brazo inferior (*Lower Arm*).
-  - `[U-]` / `[U+]`: Elevación/descenso del brazo superior (*Upper Arm*).
-  - `[R-]` / `[R+]`: Rotación del antebrazo (*Wrist Roll*).
-  - `[B-]` / `[B+]`: Cabeceo de la muñeca (*Wrist Bend*).
-  - `[T-]` / `[T+]`: Giro de la brida de herramienta (*Wrist Twist*).
+  - `[S-]` / `[S+]`: Giro de la base
+  - `[L-]` / `[L+]`: Inclinación del brazo inferior
+  - `[U-]` / `[U+]`: Elevación/descenso del brazo superior
+  - `[B-]` / `[B+]`: Rotación del antebrazo (*Wrist Roll*).
+  - `[R-]` / `[R+]`: Cabeceo de la muñeca
+  - `[T-]` / `[T+]`: Giro de la brida de herramienta
+  - `[E-]` / `[E+]`: Traslación de la base del robot
+  - `[8-]` / `[8+]`: Rotación del motor (eje) externo
 - **Movimiento cartesiano de traslación (Modos `RECT` / `TOOL` / `USER`):**
   - `[X-]` / `[X+]` *(teclas `S-`/`S+`)*: Desplazamiento lineal del TCP a lo largo del eje $X$.
   - `[Y-]` / `[Y+]` *(teclas `L-`/`L+`)*: Desplazamiento lineal del TCP a lo largo del eje $Y$.
@@ -72,7 +113,8 @@ Manteniendo presionado el gatillo trasero de habilitación, se utilizan las **12
   - `[Ry-]` / `[Ry+]` *(teclas `B-`/`B+`)*: Rotación pura del efector alrededor del eje $Y$ manteniendo fija la posición del TCP.
   - `[Rz-]` / `[Rz+]` *(teclas `T-`/`T+`)*: Rotación pura del efector alrededor del eje $Z$ manteniendo fija la posición del TCP.
 
-<!-- TODO: Subir foto del teach pendant -->
+![Teach Pendant](../assets/lab02/tp.jpeg)
+![Teach Pendant](../assets/lab02/tpZOOM.jpeg)
 
 ### Detallar los niveles de velocidad del Motoman para movimientos manuales y su configuración, ¿Cómo se hace el cambio entre niveles de velocidad?, ¿Cómo se identifica en la pantalla el nivel de velocidad establecido?
 
@@ -178,15 +220,15 @@ Para celdas automatizadas complejas, RoboDK se comunica con periféricos y contr
 
 #### Matriz Comparativa Técnica: RoboDK vs. ABB RobotStudio
 
-| Característica Técnica | RoboDK | ABB RobotStudio |
-| :--- | :--- | :--- |
-| **Alcance de Fabricantes** | **Multimarca (Agnóstico):** Más de 900 robots de más de 50 fabricantes (ABB, KUKA, Fanuc, UR, Yaskawa, etc.). | **Exclusivo ABB:** Toda la gama de manipuladores ABB (IRB, GoFa, YuMi, IRB 360 FlexPicker, etc.). |
-| **Motor de Simulación** | **Modelado Cinemático Geométrico:** Resuelve IK/FK mediante algoritmos propios y traduce vía post-procesadores. | **Virtual Robot Controller (VRC / VirtualRobot™):** Ejecuta una instancia exacta del firmware real (**RobotWare**). |
-| **Fidelidad de Tiempo de Ciclo** | Aproximada (basada en perfiles cinemáticos teóricos de velocidad y aceleración). | **Exacta (Determinista):** Tiempos de ciclo reales idénticos al controlador físico IRC5 u OmniCore. |
-| **Lenguaje de Programación** | Interfaz gráfica, Python, C++, C#, MATLAB (traducido al lenguaje destino al exportar). | **Nativo RAPID:** Edición, compilación y depuración directa de código RAPID y *FlexPendant* virtual. |
-| **Integración CAD / CAM** | Muy alta y nativa para mecanizado (conversión directa de G-code/APT a trayectorias). | Alta para diseño de estaciones CAD; requiere *PowerPacs* específicos para mecanizado o soldadura. |
-| **Lógica de Controlador e I/O** | Simulación básica de eventos y señales I/O mediante scripts Python o GUI. | Simulación completa de multitarea, interrupciones (`TRAP`), buses de campo (PROFINET, EtherNet/IP) y *Smart Components*. |
-| **Seguridad Funcional** | Verificación geométrica de colisiones y zonas de trabajo. | Configuración y validación real de **SafeMove** (zonas seguras, supervisión de velocidad y parada segura). |
+| Característica Técnica           | RoboDK                                                                                                          | ABB RobotStudio                                                                                                          |
+| :------------------------------- | :-------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
+| **Alcance de Fabricantes**       | **Multimarca (Agnóstico):** Más de 900 robots de más de 50 fabricantes (ABB, KUKA, Fanuc, UR, Yaskawa, etc.).   | **Exclusivo ABB:** Toda la gama de manipuladores ABB (IRB, GoFa, YuMi, IRB 360 FlexPicker, etc.).                        |
+| **Motor de Simulación**          | **Modelado Cinemático Geométrico:** Resuelve IK/FK mediante algoritmos propios y traduce vía post-procesadores. | **Virtual Robot Controller (VRC / VirtualRobot™):** Ejecuta una instancia exacta del firmware real (**RobotWare**).      |
+| **Fidelidad de Tiempo de Ciclo** | Aproximada (basada en perfiles cinemáticos teóricos de velocidad y aceleración).                                | **Exacta (Determinista):** Tiempos de ciclo reales idénticos al controlador físico IRC5 u OmniCore.                      |
+| **Lenguaje de Programación**     | Interfaz gráfica, Python, C++, C#, MATLAB (traducido al lenguaje destino al exportar).                          | **Nativo RAPID:** Edición, compilación y depuración directa de código RAPID y *FlexPendant* virtual.                     |
+| **Integración CAD / CAM**        | Muy alta y nativa para mecanizado (conversión directa de G-code/APT a trayectorias).                            | Alta para diseño de estaciones CAD; requiere *PowerPacs* específicos para mecanizado o soldadura.                        |
+| **Lógica de Controlador e I/O**  | Simulación básica de eventos y señales I/O mediante scripts Python o GUI.                                       | Simulación completa de multitarea, interrupciones (`TRAP`), buses de campo (PROFINET, EtherNet/IP) y *Smart Components*. |
+| **Seguridad Funcional**          | Verificación geométrica de colisiones y zonas de trabajo.                                                       | Configuración y validación real de **SafeMove** (zonas seguras, supervisión de velocidad y parada segura).               |
 
 ---
 
@@ -235,8 +277,8 @@ Para el trazado planar sobre la superficie de trabajo mediante el manipulador **
 $$r(\theta) = A \cos\left(\frac{n}{d} \cdot \theta\right)$$
 
 Donde:
-- $A$: Radio máximo de la figura dentro de la zona segura de dibujo (definido en milímetros).
-- $n, d \in \mathbb{Z}^+$: Parámetros enteros coprimos que determinan el número de pétalos y el periodo angular $\Theta_{\max} = 2\pi d$ necesario para cerrar completamente la curva.
+- $A$: Radio máximo de la figura dentro de la zona segura de dibujo (definido en milímetros). Para la figura final se seleccionó el valor $A = 110$.
+- $n, d \in \mathbb{Z}^+$: Parámetros enteros coprimos que determinan el número de pétalos y el periodo angular $\Theta_{\max} = 2\pi d$ necesario para cerrar completamente la curva. Para la figura final se seleccionaron los valores $n = 1$, y $d = 4$.
 - $\theta \in [0, \Theta_{\max}]$: Ángulo polar discretizado en $N$ pasos uniformes $\Delta\theta = \frac{\Theta_{\max}}{N}$.
 
 La conversión de coordenadas polares $(r, \theta)$ a coordenadas cartesianas $(x, y, z)$ referidas al marco de trabajo del plano (*Reference Frame*) se realiza mediante:
@@ -257,6 +299,12 @@ $$x(\theta) = r(\theta)\cos(\theta), \quad y(\theta) = r(\theta)\sin(\theta), \q
 
 ## Resultado
 
+### Figura trazada
+
 ![figura_trazada](../assets/lab02/figura.png)
 
-### Video
+### [Video](https://youtu.be/EDXjNwY3ZQQ)
+
+```
+https://youtu.be/EDXjNwY3ZQQ
+```
